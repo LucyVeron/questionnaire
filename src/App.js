@@ -4,7 +4,7 @@ import { Paper, Button, Box, Link, Typography } from '@mui/material'
 import { useState } from 'react';
 import { styled } from "@mui/system";
 
-const MyPaper = styled(Paper)({
+const Container = styled(Paper)({
   m: "1rem",
   height: "150px",
   position: "relative"
@@ -39,17 +39,17 @@ function App() {
         }}
       >
 
-        <MyPaper active={0}>
-          <Typography>Random Name #1</Typography>
+        <Container active={0}>
+          <Typography variant="h5">How will you be using the vacuum?</Typography>
+          <Typography variant="p">Please choose one:</Typography>
           <MyButton onClick={() => setActive(active + 1)}>Select</MyButton>
-        </MyPaper>
-        <MyPaper active={1}>
-          <Typography>Random Name #2</Typography>
+        </Container>
+        <Container active={1}>
           <MyButton onClick={() => setActive(active + 1)}>Select</MyButton>
-        </MyPaper>
-        <MyPaper active={2}>
-          Random Name #3
-        </MyPaper>
+        </Container>
+        <Container active={2}>
+          foo
+        </Container>
 
       </Carousel>
       {active === 2 &&
