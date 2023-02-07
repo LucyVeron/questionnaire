@@ -1,6 +1,6 @@
 import './App.css';
 import Carousel from 'react-material-ui-carousel'
-import { Paper, Button, Box } from '@mui/material'
+import { Paper, Button, Box, Link } from '@mui/material'
 import { useState } from 'react';
 
 function App() {
@@ -43,19 +43,23 @@ function App() {
       >
         {items.map((item, i) => <Item key={i} item={item} />)}
       </Carousel>
+      {active === 2 &&
+        <Link
+          underline="none"
+          target="_blank"
+          href="https://www.dyson.co.uk/inside-dyson/dyson-demo.html">
+          Result
+        </Link>
+      }
     </Box>
   );
 }
 
 function Item(props) {
   return (
-    <Paper>
+    <Paper sx={{ p: "0.8rem" }}>
       <h2>{props.item.name}</h2>
       <p>{props.item.description}</p>
-
-      <Button>
-        Check it out!
-      </Button>
     </Paper>
   )
 }
