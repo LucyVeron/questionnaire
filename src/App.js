@@ -1,24 +1,23 @@
 import './App.css';
 import Carousel from 'react-material-ui-carousel'
-import { Paper, Button, Box, Link } from '@mui/material'
+import { Paper, Button, Box, Link, Typography } from '@mui/material'
 import { useState } from 'react';
+import { styled } from "@mui/system";
+
+const MyPaper = styled(Paper)({
+  m: "1rem",
+  height: "150px",
+  position: "relative"
+});
+
+const MyButton = styled(Button)({
+  position: "absolute",
+  bottom: 0,
+  left: "50%"
+});
 
 function App() {
   const [active, setActive] = useState(0);
-  let items = [
-    {
-      name: "Random Name #1",
-      description: "Probably the most random thing you have ever seen!"
-    },
-    {
-      name: "Random Name #2",
-      description: "Hello World!"
-    },
-    {
-      name: "Random Name #3",
-      description: "Final Slide"
-    }
-  ];
 
   return (
     <Box className="app" sx={{ p: "1rem" }}>
@@ -29,10 +28,8 @@ function App() {
         index={active}
         autoPlay={false}
         cycleNavigation={false}
-        next={(next) => setActive(next)}
-        prev={(prev) => setActive(prev)}
+        onChange={(now) => setActive(now)}
         NavButton={({ onClick, className, style, next, prev }) => {
-
           return (
             <Button onClick={onClick} className={className} style={style}>
               {next && "Next"}
@@ -41,7 +38,19 @@ function App() {
           )
         }}
       >
-        {items.map((item, i) => <Item key={i} item={item} />)}
+
+        <MyPaper active={0}>
+          <Typography>Random Name #1</Typography>
+          <MyButton onClick={() => setActive(active + 1)}>Select</MyButton>
+        </MyPaper>
+        <MyPaper active={1}>
+          <Typography>Random Name #2</Typography>
+          <MyButton onClick={() => setActive(active + 1)}>Select</MyButton>
+        </MyPaper>
+        <MyPaper active={2}>
+          Random Name #3
+        </MyPaper>
+
       </Carousel>
       {active === 2 &&
         <Link
@@ -53,15 +62,6 @@ function App() {
       }
     </Box>
   );
-}
-
-function Item(props) {
-  return (
-    <Paper sx={{ p: "0.8rem" }}>
-      <h2>{props.item.name}</h2>
-      <p>{props.item.description}</p>
-    </Paper>
-  )
 }
 
 export default App;
