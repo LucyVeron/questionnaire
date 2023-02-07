@@ -13,35 +13,35 @@ function App() {
     {
       name: "Random Name #2",
       description: "Hello World!"
+    },
+    {
+      name: "Random Name #3",
+      description: "Final Slide"
     }
   ];
 
-  const reset = () => {
-
-  }
-
   return (
-    <Box className="app" sx={{p: "1rem"}}>
-      {/* <Box>
-        <Button onClick={() => consolw.warn}>Reset</Button>
-      </Box> */}
+    <Box className="app" sx={{ p: "1rem" }}>
+      <Box sx={{ mb: "5rem" }}>
+        <Button onClick={() => setActive(0)}>Reset</Button>
+      </Box>
       <Carousel
-        next={(next, active) => console.log(`we left ${active}, and are now at ${next}`)}
-        prev={(prev, active) => console.log(`we left ${active}, and are now at ${prev}`)}
-        NavButton={({onClick, className, style, next, prev}) => {
-          // Other logic
-  
+        index={active}
+        autoPlay={false}
+        cycleNavigation={false}
+        next={(next) => setActive(next)}
+        prev={(prev) => setActive(prev)}
+        NavButton={({ onClick, className, style, next, prev }) => {
+
           return (
-              <Button onClick={onClick} className={className} style={style}>
-                  {next && "Next"}
-                  {prev && "Previous"}
-              </Button>
+            <Button onClick={onClick} className={className} style={style}>
+              {next && "Next"}
+              {prev && "Previous"}
+            </Button>
           )
-      }}
+        }}
       >
-        {
-          items.map((item, i) => <Item key={i} item={item} />)
-        }
+        {items.map((item, i) => <Item key={i} item={item} />)}
       </Carousel>
     </Box>
   );
